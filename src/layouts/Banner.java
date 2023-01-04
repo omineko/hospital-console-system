@@ -36,7 +36,6 @@ public class Banner implements IDefaultLayout {
     private void renderSide() {
         if (this.text.length() < this.size) {
             int sideSize = ((this.size - this.title.length()) / 2) - 1;
-            System.err.print(sideSize);
             for (int i = 0; i < sideSize; i++) {
                 System.out.print(this.text);
             }
