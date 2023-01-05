@@ -55,7 +55,9 @@ public class Banner implements IDefaultLayout {
            this.renderBorder();
        } else {
            this.renderSide();
+           System.out.print(" ");
            System.out.print(this.title);
+           System.out.print(" ");
            this.renderSide();
            System.out.print("\n"); 
        }
