@@ -2,11 +2,11 @@ package interfaces;
 
 import java.util.HashMap;
 import routes.Route;
-import views.AdminLogin;
-import views.DoctorLogin;
+import views.login.AdminLogin;
+import views.login.DoctorLogin;
 import views.MainMenu;
-import views.PatientLogin;
-import views.ReceptionistLogin;
+import views.login.PatientLogin;
+import views.login.ReceptionistLogin;
 
 public interface Routes {
     HashMap<String, Route> routes = new HashMap<>();
