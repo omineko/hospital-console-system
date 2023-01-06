@@ -47,12 +47,12 @@ public class Doctors extends Users {
         return status;
     }
 
-    public void remove(String id) {
-        super.remove(id, "doctor");
+    public boolean remove(String id) {
+        return super.remove(id, "doctor");
     }
 
-    public User findOne(String id) {
-        return super.findOne(id, "doctor");
+    public Doctor findOne(String id) {
+        return (Doctor) super.findOne(id, "doctor");
     }
 
     public ArrayList<User> find() {

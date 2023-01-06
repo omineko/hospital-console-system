@@ -88,7 +88,6 @@ public class AddDoctor implements IDefaultView {
     }
     
     private void save() {
-        data.put("role", "doctor");
         HashMap<String, String> result = Admin.addDoctor(data);
         
         if (!Boolean.valueOf(result.get("status"))) {
