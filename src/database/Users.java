@@ -1,19 +1,17 @@
 package database;
 
 import interfaces.IDB;
-import interfaces.IModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import models.User;
 
 public class Users implements IDB {
-    private static ArrayList<IModel> table = new ArrayList<>();
-
-    @Override
-    public HashMap<String, String> create(HashMap<String, String> data) {
+    protected static ArrayList<User> table = new ArrayList<>();
+    
+    protected HashMap<String, String> checkAccount(HashMap<String, String> data) {
         HashMap<String, String> status = new HashMap<>();
         
-        for (IModel user : table) {
+        for (User user : table) {
             if (user.getRole().equals(data.get("role"))) {
                 // username is unique
                 if (user.getUsername().equals(data.get("username"))) {
@@ -21,41 +19,42 @@ public class Users implements IDB {
                     status.put("errType", "USERNAME_UNIQ_ERROR");
                     
                     return status;
-                };
-                
-                // username is not blank
-                if (data.get("username").isBlank()) {
-                    status.put("status", "false");
-                    status.put("errType", "USERNAME_BLANK_ERROR");
-                    
-                    return status;
                 }
-                
-                // password is not blank
-                if (data.get("password").isBlank()) {
-                    status.put("status", "false");
-                    status.put("errType", "PASSWORD_BLANK_ERROR");
-                    
-                    return status;
-                }
-                
-                table.add(new User(data.get("username"), data.get("password"), data.get("role")));
-                status.put("status", "true");
-                status.put("errType", "USERNAME_UNIQ_ERROR");
-                
-                return status;
             }
         }
+
+        // username is not blank
+        if (data.get("username").isBlank()) {
+            status.put("status", "false");
+            status.put("errType", "USERNAME_BLANK_ERROR");
+
+            return status;
+        }
+
+        // password is not blank
+        if (data.get("password").isBlank()) {
+            status.put("status", "false");
+            status.put("errType", "PASSWORD_BLANK_ERROR");
+
+            return status;
+        }
         
-        status.put("status", "false");
-        status.put("errType", "GENERIC_ERROR");
+        status.put("status", "true");
+        status.put("errType", "SUCCESS");
 
         return status;
     }
 
     @Override
+    public HashMap<String, String> create(HashMap<String, String> data) {
+        table.add(new User(data.get("username"), data.get("password"), data.get("role")));
+
+        return this.checkAccount(data);
+    }
+
+    @Override
     public void remove(String id, String role) {
-        for (IModel user : table) {
+        for (User user : table) {
             if (user.getId().equals(id) && user.getRole().equals(role)) {
                 table.remove(user);
             }
@@ -63,8 +62,8 @@ public class Users implements IDB {
     }
 
     @Override
-    public IModel findOne(String id, String role) {
-        for (IModel user : table) {
+    public User findOne(String id, String role) {
+        for (User user : table) {
             if (user.getId().equals(id) && user.getRole().equals(role)) {
                 return user;
             }
@@ -74,10 +73,10 @@ public class Users implements IDB {
     }
 
     @Override
-    public ArrayList<IModel> find(String role) {
-        ArrayList<IModel> users = new ArrayList<>();
+    public ArrayList<User> find(String role) {
+        ArrayList<User> users = new ArrayList<>();
         
-        for (IModel user : table) {
+        for (User user : table) {
             if (user.getRole().equals(role)) {
                 users.add(user);
             }

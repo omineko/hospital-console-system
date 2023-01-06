@@ -45,6 +45,7 @@ public class Choice implements IDefaultLayout {
                 }
             } catch (Exception e) {
                 // quits application
+                e.printStackTrace();
                 break;
             }
         }

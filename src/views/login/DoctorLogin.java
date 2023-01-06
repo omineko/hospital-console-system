@@ -32,6 +32,7 @@ public class DoctorLogin implements IDefaultView {
         
         if (Auth.login(credentials)) {
             System.out.println("Logged In");
+            Router.navigate("doctor-dashboard");
         } else {
             System.out.println("Unauthorized User. Please contact administrator");
             Router.navigate("main-menu");

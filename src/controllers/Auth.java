@@ -1,10 +1,10 @@
 package controllers;
 
 import database.Users;
-import interfaces.IModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import routes.Router;
+import models.User;
 
 public class Auth {
     public static HashMap<String, String> register(HashMap<String, String> data) {
@@ -12,9 +12,9 @@ public class Auth {
     }
     
     public static boolean login(HashMap<String, String> data) {
-        ArrayList<IModel> users = new Users().find(data.get("role"));
+        ArrayList<User> users = new Users().find(data.get("role"));
         
-        for (IModel user : users) {
+        for (User user : users) {
             String username = user.getUsername();
             String password = user.getPassword();
             

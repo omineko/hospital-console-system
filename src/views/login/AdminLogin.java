@@ -32,6 +32,7 @@ public class AdminLogin implements IDefaultView {
         
         if (Auth.login(credentials)) {
             System.out.println("Logged In");
+            Router.navigate("admin-dashboard");
         } else {
             System.out.println("Unauthorized User. Please contact administrator");
             Router.navigate("main-menu");

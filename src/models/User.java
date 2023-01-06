@@ -1,7 +1,7 @@
 package models;
 
 import interfaces.IModel;
-import java.util.UUID;
+import java.util.Random;
 
 public class User implements IModel {
     private String id;
@@ -10,7 +10,7 @@ public class User implements IModel {
     private String role;
     
     public User(String username, String password, String role) {
-        this.id = UUID.randomUUID().toString();
+        this.id = String.valueOf(new Random().nextInt(2023)); // TODO: Prevent id colission
         this.username = username;
         this.password = password;
         this.role = role;

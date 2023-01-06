@@ -5,9 +5,8 @@ import interfaces.Routes;
 import java.util.ArrayList;
 import layouts.Banner;
 import layouts.Choice;
-import routes.Route;
 
-public class MainMenu implements IDefaultView, Routes {
+public class MainMenu implements IDefaultView {
     private ArrayList<String> selectedRoutes = new ArrayList<>();
     
     public MainMenu() {
