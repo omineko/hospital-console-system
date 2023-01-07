@@ -3,6 +3,8 @@ package routes;
 import interfaces.IDefaultView;
 import interfaces.IRoute;
 
+// Defines the Route class
+
 public class Route implements IRoute {
     private IDefaultView view;
     private String name;

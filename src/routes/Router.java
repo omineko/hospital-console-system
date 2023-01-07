@@ -4,6 +4,12 @@ import java.util.HashMap;
 import interfaces.Routes;
 import java.util.Stack;
 
+/**
+ * This class inherits the Routes interface.
+ * 
+ * This class functions as a navigator or router between different views.
+ */
+
 public abstract class Router implements Routes {
     private static Stack<String> history = new Stack<>();
     private static boolean isLoggedIn = false;

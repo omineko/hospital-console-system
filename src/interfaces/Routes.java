@@ -2,16 +2,20 @@ package interfaces;
 
 import java.util.HashMap;
 import routes.Route;
-import views.GoBack;
 import views.login.*;
-import views.MainMenu;
-import views.Quit;
-import views.SignOut;
+import views.*;
 import views.admin.*;
 import views.dashboard.*;
 
+/**
+ * This is an abstraction of all Route classes. Each class is assigned to a variable which
+ * then inherited by the subclass Router
+**/
+
 public interface Routes {
     HashMap<String, Route> routes = new HashMap<>();
+    
+    // main view
     Route mainMenu = new Route("Main Menu", new MainMenu());
     Route goBack = new Route("Go Back", new GoBack());
     Route quit = new Route("Quit", new Quit());
