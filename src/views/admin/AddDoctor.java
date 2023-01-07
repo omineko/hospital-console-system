@@ -2,9 +2,11 @@ package views.admin;
 
 import controllers.Admin;
 import interfaces.IDefaultView;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import layouts.Banner;
+import layouts.DisplayError;
 import routes.Router;
 import views.Enums.Department;
 
@@ -59,7 +61,7 @@ public class AddDoctor implements IDefaultView {
         if (choice.toUpperCase().equals("Y")) {
             this.save();
         } else {
-            System.out.println("Doctor profile not save. Retrying...");
+            System.out.println("Doctor profile not save. Aborting...");
             this.show();
         }
     }
@@ -88,11 +90,11 @@ public class AddDoctor implements IDefaultView {
     }
     
     private void save() {
-        HashMap<String, String> result = Admin.addDoctor(data);
+        ArrayList<HashMap<String, String>> errors = Admin.addDoctor(data);
         
-        if (!Boolean.valueOf(result.get("status"))) {
+        if (!errors.isEmpty()) {
             new Banner(false, "Errors Detected. Not Saved.").render();
-            
+            new DisplayError(errors).render();
             this.show();
         } else {
             System.out.println("Doctor Profile Saved.");

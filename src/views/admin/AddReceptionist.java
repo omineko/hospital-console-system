@@ -4,9 +4,11 @@ package views.admin;
 
 import controllers.Admin;
 import interfaces.IDefaultView;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import layouts.Banner;
+import layouts.DisplayError;
 import routes.Router;
 
 public class AddReceptionist implements IDefaultView {
@@ -28,11 +30,11 @@ public class AddReceptionist implements IDefaultView {
     
     public void save() {
 
-        HashMap<String, String> result = Admin.addReceptionist(data);
+        ArrayList<HashMap<String, String>> errors = Admin.addReceptionist(data);
         
-        if (!Boolean.valueOf(result.get("status"))) {
+        if (!errors.isEmpty()) {
             new Banner(false, "Errors Detected. Not Saved.").render();
-            
+            new DisplayError(errors).render();
             this.show();
         } else {
             System.out.println("Recptionist Profile Saved.");

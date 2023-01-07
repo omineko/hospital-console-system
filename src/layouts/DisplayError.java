@@ -1,38 +1,33 @@
 package layouts;
 
 import interfaces.IDefaultLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DisplayError implements IDefaultLayout {
-    private String errType;
+    private ArrayList<HashMap<String, String>> errors = new ArrayList<>();
     
-    public DisplayError(String errType) {
-        this.errType = errType.toUpperCase();
-    }
-    
-    private void identifyError(String errType) {
-        
+    public DisplayError(ArrayList<HashMap<String, String>> errors) {
+        this.errors = errors;
     }
 
     @Override
     public void render() {
-        switch (this.errType) {
-            case "USERNAME_UNIQ_ERROR":
-                System.err.println("ERROR: Username must BE BLANK");
-                break;
-            case "USERNAME_BLANK_ERROR":
-                System.err.println("ERROR: Username must NOT BE BLANK");
-                break;
-            case "PASSWORD_BLANK_ERROR":
-                System.err.println("ERROR: Password must NOT BE BLANK");
-                break;
-            case "NAME_ILLEGAL_ERROR":
-                System.err.println("ERROR: Illegal character detected. Only letters allowed");
-            default:
-                if (this.errType.isBlank()) {
-                    System.err.println("Something went wrong.");
-                } else {
-                    System.err.println(this.errType);
-                }
+        System.out.println(errors.size());
+        for (HashMap<String, String> error : errors) {
+            switch (error.get("errType")) {
+                case "UNIQ_ERROR":
+                    System.err.printf("ERROR: %s must BE UNIQUE \n", error.get("path"));
+                    break;
+                case "BLANK_ERROR":
+                    System.err.printf("ERROR: %s must NOT BE BLANK \n", error.get("path"));
+                    break;
+                case "NAME_ILLEGAL_ERROR":
+                    System.err.printf("ERROR: %s: Illegal character detected. Only letters allowed \n", error.get("path"));
+                    break;
+                default:
+                    System.err.println("ERROR: Something went wrong. \n");
+            }
         }
     }
 
