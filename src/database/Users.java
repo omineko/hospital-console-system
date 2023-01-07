@@ -8,53 +8,52 @@ import models.User;
 public class Users implements IDB {
     protected static ArrayList<User> table = new ArrayList<>();
     
-    protected HashMap<String, String> checkAccount(HashMap<String, String> data) {
-        HashMap<String, String> status = new HashMap<>();
-        ArrayList<HashMap<String, String> errors = new ArrayList<>();
+    protected ArrayList<HashMap<String, String>> checkAccount(HashMap<String, String> data) {
+        ArrayList<HashMap<String, String>> errors = new ArrayList<>();
         
         for (User user : table) {
             if (user.getRole().equals(data.get("role"))) {
                 // username is unique
                 if (user.getUsername().equals(data.get("username"))) {
-                    status.put("status", "false");
-                    status.put("errType", "USERNAME_UNIQ_ERROR");
+                    HashMap<String, String> error = new HashMap<>();
+                    error.put("path", "Username");
+                    error.put("errType", "UNIQ_ERROR");
                     
-                    return status;
+                    errors.add(error);
                 }
             }
         }
 
         // username is not blank
         if (data.get("username").isBlank()) {
-            status.put("status", "false");
-            status.put("errType", "USERNAME_BLANK_ERROR");
+            HashMap<String, String> error = new HashMap<>();
+            error.put("path", "Username");
+            error.put("errType", "BLANK_ERROR");
 
-            return status;
+            errors.add(error);
         }
 
         // password is not blank
         if (data.get("password").isBlank()) {
-            status.put("status", "false");
-            status.put("errType", "PASSWORD_BLANK_ERROR");
+            HashMap<String, String> error = new HashMap<>();
+            error.put("path", "Password");
+            error.put("errType", "BLANK_ERROR");
 
-            return status;
+            errors.add(error);
         }
         
-        status.put("status", "true");
-        status.put("errType", "SUCCESS");
-
-        return status;
+        return errors;
     }
 
     @Override
-    public HashMap<String, String> create(HashMap<String, String> data) {
-        HashMap<String, String> result = this.checkAccount(data);
+    public ArrayList<HashMap<String, String>> create(HashMap<String, String> data) {
+        ArrayList<HashMap<String, String>> errors = this.checkAccount(data);
         
-        if (Boolean.valueOf(result.get("status"))) {
+        if (errors.isEmpty()) {
             table.add(new User(data.get("username"), data.get("password"), data.get("role"))); 
         }
 
-        return result;
+        return errors;
     }
 
     @Override

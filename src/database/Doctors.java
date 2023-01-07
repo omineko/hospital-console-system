@@ -10,41 +10,44 @@ import models.User;
 
 public class Doctors extends Users {
 
-    public HashMap<String, String> create(HashMap<String, String> data) {
-        HashMap<String, String> status = new HashMap<>();
+    public ArrayList<HashMap<String, String>> create(HashMap<String, String> data) {
+        ArrayList<HashMap<String, String>> errors = new ArrayList<>();
         String NOT_SYMBOL_REGEX = "^[a-zA-Z]*$";
         
-        status = super.checkAccount(data);
+        errors = super.checkAccount(data);
 
         // firstName must not contain special symbols
         if (!data.get("first-name").matches(NOT_SYMBOL_REGEX) || data.get("first-name").isBlank()) {
-            status.put("status", "false");
-            status.put("errType", "NAME_ILLEGAL_ERROR");
+            HashMap<String, String> error = new HashMap<>();
+            error.put("path", "First Name");
+            error.put("errType", "NAME_ILLEGAL_ERROR");
 
-            return status;
+            errors.add(error);
         }
 
         // lastName must not contain special symbols
         if (!data.get("last-name").matches(NOT_SYMBOL_REGEX) || data.get("last-name").isBlank()) {
-            status.put("status", "false");
-            status.put("errType", "NAME_ILLEGAL_ERROR");
+            HashMap<String, String> error = new HashMap<>();
+            error.put("path", "Last Name");
+            error.put("errType", "NAME_ILLEGAL_ERROR");
 
-            return status;
+            errors.add(error);
         }
 
         // address is not blank
         if (data.get("address").isBlank()) {
-            status.put("status", "false");
-            status.put("errType", "NAME_ILLEGAL_ERROR");
+            HashMap<String, String> error = new HashMap<>();
+            error.put("path", "Address");
+            error.put("errType", "BLANK_ERROR");
 
-            return status;
+            errors.add(error);
         }
         
-        table.add(new Doctor(data));
-        status.put("status", "true");
-        status.put("errType", "SUCCESS");
+        if (errors.isEmpty()) {
+            table.add(new Doctor(data));
+        }
         
-        return status;
+        return errors;
     }
 
     public boolean remove(String id) {

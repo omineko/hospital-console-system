@@ -8,17 +8,17 @@ import models.User;
 import models.Doctor;
 
 public class Admin {
-    public static HashMap<String, String> addDoctor(HashMap<String, String> data) {
+    public static ArrayList<HashMap<String, String>> addDoctor(HashMap<String, String> data) {
         data.put("role", "doctor");
         return new Doctors().create(data);
     }
     
-    public static HashMap<String, String> addReceptionist(HashMap<String, String> data) {
+    public static ArrayList<HashMap<String, String>> addReceptionist(HashMap<String, String> data) {
         data.put("role", "receptionist");
         return new Users().create(data);
     }
     
-    public static HashMap<String, String> addAdmin(HashMap<String, String> data) {
+    public static ArrayList<HashMap<String, String>> addAdmin(HashMap<String, String> data) {
         data.put("role", "admin");
         return new Users().create(data);
     }

@@ -7,7 +7,7 @@ import routes.Router;
 import models.User;
 
 public class Auth {
-    public static HashMap<String, String> register(HashMap<String, String> data) {
+    public static ArrayList<HashMap<String, String>> register(HashMap<String, String> data) {
         return new Users().create(data);
     }
     
