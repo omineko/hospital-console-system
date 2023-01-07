@@ -27,15 +27,20 @@ public abstract class Router implements Routes {
         routes.put("list-receptionists", listReceptionists);
         routes.put("remove-doctor", removeDoctor);
         routes.put("remove-receptionist", removeReceptionist);
+        routes.put("add-admin", addAdmin);
+        routes.put("list-admins", listAdmins);
+        routes.put("remove-admin", removeAdmin);
     }
     
     public static HashMap<String, Route> getRoutes() {
         return routes;
     }
     
-    public static void navigate(String routeName) {
+    public static String navigate(String routeName) {
         if (routes.containsKey(routeName)) {
-            routes.get(routeName).navigate();
+            return routes.get(routeName).navigate();
         }
+        
+        return "Route Not Found.";
     }
 }

@@ -15,6 +15,9 @@ public class AdminDashboard implements IDefaultView {
         selectedRoutes.add("list-receptionists");
         selectedRoutes.add("remove-doctor");
         selectedRoutes.add("remove-receptionist");
+        selectedRoutes.add("add-admin");
+        selectedRoutes.add("list-admins");
+        selectedRoutes.add("remove-admin");
     }
     
     @Override

@@ -10,7 +10,7 @@ import routes.Router;
 
 public class Choice implements IDefaultLayout {
     private HashMap<String, Route> routes;
-    private String[] choices = new String[10];
+    private String[] choices = new String[20];
     private ArrayList<String> selectedRoutes = new ArrayList<>();
     private int count = 1;
     private int choice;

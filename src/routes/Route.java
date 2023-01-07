@@ -13,8 +13,10 @@ public class Route implements IRoute {
     }
     
     @Override
-    public void navigate() {
+    public String navigate() {
         this.view.show();
+        
+        return this.name;
     }
 
     @Override

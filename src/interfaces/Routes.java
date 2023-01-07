@@ -4,10 +4,13 @@ import java.util.HashMap;
 import routes.Route;
 import views.login.*;
 import views.MainMenu;
+import views.admin.AddAdmin;
 import views.admin.AddDoctor;
 import views.admin.AddReceptionist;
+import views.admin.ListAdmins;
 import views.admin.ListDoctors;
 import views.admin.ListReceptionists;
+import views.admin.RemoveAdmin;
 import views.admin.RemoveDoctor;
 import views.admin.RemoveReceptionist;
 import views.dashboard.*;
@@ -35,4 +38,7 @@ public interface Routes {
     Route listReceptionists = new Route("List Receptionists", new ListReceptionists());
     Route removeDoctor = new Route("Remove Doctor", new RemoveDoctor());
     Route removeReceptionist = new Route("Remove Receptionists", new RemoveReceptionist());
+    Route addAdmin = new Route("Add Admin", new AddAdmin());
+    Route listAdmins = new Route("List Admins", new ListAdmins());
+    Route removeAdmin = new Route("Remove Admin", new RemoveAdmin());
 }

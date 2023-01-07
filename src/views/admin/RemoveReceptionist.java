@@ -35,7 +35,7 @@ public class RemoveReceptionist implements IDefaultView {
         String choice = scanner.nextLine();
         
         if (choice.toUpperCase().equals("Y")) {
-            boolean isSuccess = Admin.removeDoctor(this.id);
+            boolean isSuccess = Admin.removeReceptionist(this.id);
             
             if (isSuccess) {
                 System.out.println("Receptionist removed");
