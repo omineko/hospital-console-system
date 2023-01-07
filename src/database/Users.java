@@ -10,6 +10,7 @@ public class Users implements IDB {
     
     protected HashMap<String, String> checkAccount(HashMap<String, String> data) {
         HashMap<String, String> status = new HashMap<>();
+        ArrayList<HashMap<String, String> errors = new ArrayList<>();
         
         for (User user : table) {
             if (user.getRole().equals(data.get("role"))) {
