@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import layouts.Banner;
 import layouts.DisplayError;
+import layouts.Field;
 import routes.Router;
 import views.Enums.Department;
 
@@ -20,20 +21,14 @@ public class AddDoctor implements IDefaultView {
             System.out.println("-- ADD DOCTOR --");
 
             System.out.println("* Account Information:");
-            System.out.print("New Username: ");
-            data.put("username", scanner.nextLine());
-            System.out.print("New Password: ");
-            data.put("password", scanner.nextLine());
+            data.put("username", new Field("New Username").renderAndReturn());
+            data.put("password", new Field("New Password").renderAndReturn());
 
             System.out.println("* Personal Information:");
-            System.out.print("First Name: ");
-            data.put("first-name", scanner.nextLine());
-            System.out.print("Last Name: ");
-            data.put("last-name", scanner.nextLine());
-            System.out.println("Address: ");
-            data.put("address", scanner.nextLine());
-            System.out.print("Contact No.: ");
-            data.put("contact", String.valueOf(scanner.nextInt()));
+            data.put("first-name", new Field("First Name").renderAndReturn());
+            data.put("last-name", new Field("Last Name").renderAndReturn());
+            data.put("address", new Field("Address").renderAndReturn());
+            data.put("contact", new Field("Contact", true).renderAndReturn());
             data.put("department", this.displayDepartment());
             this.displayConfirmation();
             
@@ -41,17 +36,21 @@ public class AddDoctor implements IDefaultView {
             System.out.println("Invalid Input. Doctor not saved. Reverting..");
             Router.navigate("admin-dashboard");
         }
-      
-        
     }
     
     private void displayConfirmation() {
         // review information
         new Banner(false, "Review Information").render();
         
-        data.forEach((key, value) -> {
-            System.out.printf("[%s]: %s \n", key, value);
-        });
+        System.out.println("* Account Information:");
+        System.out.printf("[%s]: %s \n", "USERNAME", data.get("username"));
+        System.out.printf("[%s]: %s \n", "PASSWORD", data.get("password"));
+        System.out.println("* Personal Information:");
+        System.out.printf("[%s]: %s \n", "FIRST NAME", data.get("first-name"));
+        System.out.printf("[%s]: %s \n", "LAST NAME", data.get("last-name"));
+        System.out.printf("[%s]: %s \n", "ADDRESS", data.get("address"));
+        System.out.printf("[%s]: %s \n", "CONTACT", data.get("contact"));
+        System.out.printf("[%s]: %s \n", "DEPARTMENT", data.get("department"));
         
         // confirm
         System.out.println("Are you sure the details were correct? [Y]");
@@ -98,7 +97,7 @@ public class AddDoctor implements IDefaultView {
             this.show();
         } else {
             System.out.println("Doctor Profile Saved.");
-            Router.navigate("main-menu");
+            Router.navigate("go-back");
         }
     }
 

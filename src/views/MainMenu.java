@@ -1,19 +1,19 @@
 package views;
 
 import interfaces.IDefaultView;
-import interfaces.Routes;
-import java.util.ArrayList;
+import java.util.PriorityQueue;
 import layouts.Banner;
 import layouts.Choice;
 
 public class MainMenu implements IDefaultView {
-    private ArrayList<String> selectedRoutes = new ArrayList<>();
+    private PriorityQueue<String> selectedRoutes = new PriorityQueue<>();
     
     public MainMenu() {
         selectedRoutes.add("admin-login");
         selectedRoutes.add("doctor-login");
         selectedRoutes.add("patient-login");
         selectedRoutes.add("receptionist-login");
+        selectedRoutes.add("quit");
     }
     
     @Override

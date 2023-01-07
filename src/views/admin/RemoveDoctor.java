@@ -7,6 +7,7 @@ import interfaces.IDefaultView;
 import java.util.Formatter;
 import java.util.Scanner;
 import layouts.Banner;
+import layouts.Field;
 import models.Doctor;
 import routes.Router;
 
@@ -20,8 +21,7 @@ public class RemoveDoctor implements IDefaultView {
         new Banner(false, "Remove Doctor").render();
         Router.navigate("list-doctors");
         
-        System.out.print("Enter Doctor ID: ");
-        this.id = scanner.nextLine();
+        this.id = new Field("Enter Doctor ID: ").renderAndReturn();
         
         this.displayConfirmation();
     }
@@ -39,6 +39,7 @@ public class RemoveDoctor implements IDefaultView {
             
             if (isSuccess) {
                 System.out.println("Doctor removed");
+                Router.navigate("go-back");
             } else {
                 System.out.println("ID not found. Please try again.");
             }

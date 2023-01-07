@@ -2,22 +2,20 @@ package interfaces;
 
 import java.util.HashMap;
 import routes.Route;
+import views.GoBack;
 import views.login.*;
 import views.MainMenu;
-import views.admin.AddAdmin;
-import views.admin.AddDoctor;
-import views.admin.AddReceptionist;
-import views.admin.ListAdmins;
-import views.admin.ListDoctors;
-import views.admin.ListReceptionists;
-import views.admin.RemoveAdmin;
-import views.admin.RemoveDoctor;
-import views.admin.RemoveReceptionist;
+import views.Quit;
+import views.SignOut;
+import views.admin.*;
 import views.dashboard.*;
 
 public interface Routes {
     HashMap<String, Route> routes = new HashMap<>();
     Route mainMenu = new Route("Main Menu", new MainMenu());
+    Route goBack = new Route("Go Back", new GoBack());
+    Route quit = new Route("Quit", new Quit());
+    Route signOut = new Route("Sign Out", new SignOut());
     
     // login
     Route adminLogin = new Route("Administrator Login", new AdminLogin());

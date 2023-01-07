@@ -6,6 +6,7 @@ import java.util.Scanner;
 import layouts.Banner;
 import routes.Router;
 import controllers.Auth;
+import layouts.Field;
 
 public class AdminLogin implements IDefaultView {
     private HashMap<String, String> credentials = new HashMap<>();
@@ -18,11 +19,8 @@ public class AdminLogin implements IDefaultView {
         viewTitle.render();
         
         try {
-            System.out.print("username: ");
-            credentials.put("username", scanner.nextLine());
-
-            System.out.print("password: ");
-            credentials.put("password", scanner.nextLine());
+            credentials.put("username", new Field("Username").renderAndReturn());
+            credentials.put("password", new Field("Password").renderAndReturn());
         } catch (Exception e) {
             Banner errorBanner = new Banner(false, "Invalid credentials.");
             Router.navigate("main-menu");

@@ -1,12 +1,12 @@
 package views.dashboard;
 
 import interfaces.IDefaultView;
-import java.util.ArrayList;
+import java.util.PriorityQueue;
 import layouts.Banner;
 import layouts.Choice;
 
 public class DoctorDashboard implements IDefaultView {
-    private ArrayList<String> selectedRoutes = new ArrayList<>();
+    private PriorityQueue<String> selectedRoutes = new PriorityQueue<>();
     
     public DoctorDashboard() {
         selectedRoutes.add("admin-login");

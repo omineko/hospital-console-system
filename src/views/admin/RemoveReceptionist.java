@@ -7,6 +7,7 @@ import interfaces.IDefaultView;
 import java.util.Formatter;
 import java.util.Scanner;
 import layouts.Banner;
+import layouts.Field;
 import models.User;
 import routes.Router;
 
@@ -20,8 +21,7 @@ public class RemoveReceptionist implements IDefaultView {
         new Banner(false, "Remove Receptionist").render();
         Router.navigate("list-receptionists");
         
-        System.out.print("Enter Receptionist ID: ");
-        this.id = scanner.nextLine();
+        this.id = new Field("Enter Receptionist ID: ").renderAndReturn();
         
         this.displayConfirmation();
     }
@@ -39,6 +39,7 @@ public class RemoveReceptionist implements IDefaultView {
             
             if (isSuccess) {
                 System.out.println("Receptionist removed");
+                Router.navigate("go-back");
             } else {
                 System.out.println("ID not found. Please try again.");
             }

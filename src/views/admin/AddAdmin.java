@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import layouts.Banner;
 import layouts.DisplayError;
+import layouts.Field;
 import routes.Router;
 
 
@@ -21,10 +22,8 @@ public class AddAdmin implements IDefaultView {
         System.out.println("-- ADD ADMIN --");
         
         System.out.println("* Account Information:");
-        System.out.print("New Username: ");
-        data.put("username", scanner.nextLine());
-        System.out.print("New Password: ");
-        data.put("password", scanner.nextLine());
+        data.put("username", new Field("New Username").renderAndReturn());
+        data.put("password", new Field("New Password").renderAndReturn());
         
         this.displayConfirmation();
     }
@@ -39,7 +38,7 @@ public class AddAdmin implements IDefaultView {
             this.show();
         } else {
             System.out.println("Admin Profile Saved.");
-            Router.navigate("main-menu");
+            Router.navigate("go-back");
         }
     }
     
@@ -47,9 +46,8 @@ public class AddAdmin implements IDefaultView {
         // review information
         new Banner(false, "Review Information").render();
         
-        data.forEach((key, value) -> {
-            System.out.printf("[%s]: %s \n", key, value);
-        });
+        System.out.printf("[%s]: %s \n", "USERNAME", data.get("username"));
+        System.out.printf("[%s]: %s \n", "PASSWORD", data.get("password"));
         
         // confirm
         System.out.println("Are you sure the details were correct? [Y]");
