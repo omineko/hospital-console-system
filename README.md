@@ -61,6 +61,6 @@ This contain the pages that will be rendered on each route.
 
 **receptionist**
 - [ ] assign patient to doctor
-- [ ] list patients
-- [ ] add patient
+- [x] list patients
+- [x] add patient
 - [ ] remove patient

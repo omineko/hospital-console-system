@@ -7,6 +7,8 @@ import views.*;
 import views.admin.*;
 import views.dashboard.*;
 import views.receptionist.AddPatient;
+import views.receptionist.AssignPatient;
+import views.receptionist.ListPatients;
 
 /**
  * This is an abstraction of all Route classes. Each class is assigned to a variable which
@@ -47,4 +49,6 @@ public interface Routes {
     
     // receptionist
     Route addPatient = new Route("Add Patient", new AddPatient());
+    Route listPatients = new Route("List Patients", new ListPatients());
+    Route assignPatient = new Route("Assign Patient", new AssignPatient());
 }

@@ -1,5 +1,3 @@
-
-
 package models;
 
 import java.util.HashMap;
@@ -10,6 +8,7 @@ public class Doctor extends User {
             address,
             department,
             contact;
+    private String[] patients;
 
     public Doctor(HashMap<String, String> data) {
         super(data.get("username"), data.get("password"), "doctor");
@@ -39,5 +38,13 @@ public class Doctor extends User {
 
     public String getContact() {
         return contact;
+    }
+
+    public String[] getPatients() {
+        return patients;
+    }
+
+    public void setPatients(String[] patients) {
+        this.patients = patients;
     }
 }
