@@ -9,15 +9,13 @@ public class ReceptionistDashboard implements IDefaultView {
     private PriorityQueue<String> selectedRoutes = new PriorityQueue<>();
     
     public ReceptionistDashboard() {
-        selectedRoutes.add("admin-login");
-        selectedRoutes.add("doctor-login");
-        selectedRoutes.add("patient-login");
-        selectedRoutes.add("receptionist-login");
+        selectedRoutes.add("add-patient");
+        selectedRoutes.add("sign-out");
     }
     
     @Override
     public void show() {
-        Banner banner = new Banner("Apple Lake Hospital");
+        Banner banner = new Banner("Receptionist Dashboard");
         Choice choice = new Choice(selectedRoutes);
         
         banner.render();

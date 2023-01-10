@@ -95,5 +95,6 @@ public class Users implements IDB {
     public void seed() {
         table.add(new User("admin1", "pwd", "admin"));
         table.add(new User("patient1", "pwd", "patient"));
+        table.add(new User("recep1", "pwd", "receptionist"));
     }
 }

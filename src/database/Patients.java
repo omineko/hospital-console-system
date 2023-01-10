@@ -1,14 +1,15 @@
-
 package database;
 
+import static database.Users.table;
 import java.util.ArrayList;
 import java.util.HashMap;
 import models.Doctor;
+import models.Patient;
 import models.User;
 
-
-public class Doctors extends Users {
-
+public class Patients extends Users {
+    
+    @Override
     public ArrayList<HashMap<String, String>> create(HashMap<String, String> data) {
         ArrayList<HashMap<String, String>> errors = new ArrayList<>();
         String NOT_SYMBOL_REGEX = "^[a-zA-Z]*$";
@@ -43,7 +44,7 @@ public class Doctors extends Users {
         }
         
         if (errors.isEmpty()) {
-            table.add(new Doctor(data));
+            table.add(new Patient(data));
         }
         
         return errors;

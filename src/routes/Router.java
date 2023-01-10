@@ -42,6 +42,9 @@ public abstract class Router implements Routes {
         routes.put("add-admin", addAdmin);
         routes.put("list-admins", listAdmins);
         routes.put("remove-admin", removeAdmin);
+        
+        // receptionist
+        routes.put("add-patient", addPatient);
     }
     
     public static HashMap<String, Route> getRoutes() {
