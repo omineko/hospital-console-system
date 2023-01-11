@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Doctor extends User {
@@ -8,7 +9,7 @@ public class Doctor extends User {
             address,
             department,
             contact;
-    private String[] patients;
+    private ArrayList<String> patients = new ArrayList<>();
 
     public Doctor(HashMap<String, String> data) {
         super(data.get("username"), data.get("password"), "doctor");
@@ -40,11 +41,11 @@ public class Doctor extends User {
         return contact;
     }
 
-    public String[] getPatients() {
+    public ArrayList<String> getPatients() {
         return patients;
     }
 
-    public void setPatients(String[] patients) {
-        this.patients = patients;
+    public void setPatient(String patientId) {
+        this.patients.add(patientId);
     }
 }

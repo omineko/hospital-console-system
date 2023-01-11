@@ -3,7 +3,6 @@ package database;
 import static database.Users.table;
 import java.util.ArrayList;
 import java.util.HashMap;
-import models.Doctor;
 import models.Patient;
 import models.User;
 
@@ -51,15 +50,15 @@ public class Patients extends Users {
     }
 
     public boolean remove(String id) {
-        return super.remove(id, "doctor");
+        return super.remove(id, "patient");
     }
 
-    public Doctor findOne(String id) {
-        return (Doctor) super.findOne(id, "doctor");
+    public Patient findOne(String id) {
+        return (Patient) super.findOne(id, "patient");
     }
 
     public ArrayList<User> find() {
-        return super.find("doctor");
+        return super.find("patient");
     }
 
     @Override

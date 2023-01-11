@@ -1,6 +1,5 @@
 package views.receptionist;
 
-import controllers.Admin;
 import controllers.Receptionist;
 import interfaces.IDefaultView;
 import java.util.ArrayList;

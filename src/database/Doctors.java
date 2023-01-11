@@ -9,7 +9,7 @@ import models.User;
 
 public class Doctors extends Users {
 
-    public ArrayList<HashMap<String, String>> create(HashMap<String, String> data) {
+    public  ArrayList<HashMap<String, String>> create(HashMap<String, String> data) {
         ArrayList<HashMap<String, String>> errors = new ArrayList<>();
         String NOT_SYMBOL_REGEX = "^[a-zA-Z]*$";
         

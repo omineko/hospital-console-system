@@ -25,6 +25,9 @@ public class DisplayError implements IDefaultLayout {
                 case "NAME_ILLEGAL_ERROR":
                     System.err.printf("ERROR: %s: Illegal character detected. Only letters allowed \n", error.get("path"));
                     break;
+                case "NOT_FOUND":
+                    System.err.println("User not found \n");
+                    break;
                 default:
                     System.err.println("ERROR: Something went wrong. \n");
             }
