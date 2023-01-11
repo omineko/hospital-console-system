@@ -58,5 +58,7 @@ public class Receptionist {
         return new Patients().findOne(id);
     }
     
-    public static void removePatient() {}
+    public static boolean removePatient(String id) {
+        return new Patients().remove(id);
+    }
 }
