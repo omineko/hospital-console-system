@@ -24,34 +24,31 @@ public class Choice implements IDefaultLayout {
     
     @Override
     public void render() {
-        
         while (true) {
             this.count = 1;
             
             for (String selectedRoute : selectedRoutes) {
                 this.routes.forEach((String key, Route route) -> {
                     if (selectedRoute.equals(key)) {
-                        choices[this.count] = key;
+                        choices[this.count - 1] = key;
                         System.out.println("[" + this.count + "] -> " + route.getName());
                         this.count += 1;
                     }
                 });
             }
 
-            try {
-                System.out.print("Enter your choice: ");
-                this.choice = scanner.nextInt();
-                
-                if (this.choice <= 10) {
-                    Router.navigate(choices[this.choice]);
-                    break;
-                }
-            } catch (Exception e) {
-                // quits application
+            System.out.print("Enter your choice: ");
+            this.choice = scanner.nextInt();
+
+            if (choices[this.choice - 1] != null) {
+                Router.navigate(choices[this.choice - 1]);
                 break;
+            } else {
+                System.out.println("Invalid Choice. Try Again.");
+                new Halter().render();
             }
+
         }
-        
     }
 
 }

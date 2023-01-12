@@ -10,6 +10,7 @@ public class Patient extends User {
             sex,
             bloodType,
             initialDiagnosis;
+    private boolean isReleased;
 
     public Patient(HashMap<String, String> data) {
         super(data.get("username"), data.get("password"), "patient");
@@ -21,6 +22,15 @@ public class Patient extends User {
         this.sex = data.get("sex");
         this.bloodType = data.get("blood-type");
         this.initialDiagnosis = data.get("initial-diagnosis");
+        this.isReleased = false;
+    }
+
+    public boolean isReleased() {
+        return isReleased;
+    }
+
+    public void setIsReleased(boolean isReleased) {
+        this.isReleased = isReleased;
     }
 
     public String getFirstName() {

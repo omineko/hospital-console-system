@@ -3,6 +3,7 @@ package routes;
 import java.util.HashMap;
 import interfaces.Routes;
 import java.util.Stack;
+import layouts.Halter;
 
 /**
  * This class inherits the Routes interface.
@@ -47,6 +48,9 @@ public abstract class Router implements Routes {
         routes.put("add-patient", addPatient);
         routes.put("list-patients", listPatients);
         routes.put("assign-patient", assignPatient);
+        
+        // doctor
+        routes.put("release-patient", releasePatient);
     }
     
     public static HashMap<String, Route> getRoutes() {
@@ -78,8 +82,12 @@ public abstract class Router implements Routes {
     public static String navigate(String routeName) {
         if (routes.containsKey(routeName)) {
             if (!history.isEmpty()) {
+                
                 if (!routeName.equals(history.peek())) history.add(routeName);
-            } else history.add(routeName);
+            } else {
+                
+                history.add(routeName);
+            }
             
             return routes.get(routeName).navigate();
         }

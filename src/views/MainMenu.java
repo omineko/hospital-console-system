@@ -1,9 +1,11 @@
 package views;
 
 import interfaces.IDefaultView;
+import java.util.InputMismatchException;
 import java.util.PriorityQueue;
 import layouts.Banner;
 import layouts.Choice;
+import routes.Router;
 
 public class MainMenu implements IDefaultView {
     private PriorityQueue<String> selectedRoutes = new PriorityQueue<>();
@@ -22,6 +24,11 @@ public class MainMenu implements IDefaultView {
         Choice choice = new Choice(selectedRoutes);
         
         banner.render();
-        choice.render();
+        
+        try {
+            choice.render();
+        } catch (InputMismatchException e) {
+            Router.navigate("main-menu");
+        }
     }
 }

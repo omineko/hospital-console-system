@@ -7,6 +7,7 @@ import layouts.Banner;
 import routes.Router;
 import controllers.Auth;
 import layouts.Field;
+import layouts.Halter;
 
 public class AdminLogin implements IDefaultView {
     private HashMap<String, String> credentials = new HashMap<>();
@@ -14,25 +15,22 @@ public class AdminLogin implements IDefaultView {
     
     @Override
     public void show() {
-        Banner viewTitle = new Banner(false, "Administrator Login");
+        Banner viewTitle = new Banner(false, "ADMINISTRATOR LOGIN");
+        Halter halter = new Halter();
         
         viewTitle.render();
         
-        try {
-            credentials.put("username", new Field("Username").renderAndReturn());
-            credentials.put("password", new Field("Password").renderAndReturn());
-        } catch (Exception e) {
-            Banner errorBanner = new Banner(false, "Invalid credentials.");
-            Router.navigate("main-menu");
-        }
-        
         credentials.put("role", "admin");
+        credentials.put("username", new Field("Username").renderAndReturn());
+        credentials.put("password", new Field("Password").renderAndReturn());
         
         if (Auth.login(credentials)) {
             System.out.println("Logged In");
+            halter.render();
             Router.navigate("admin-dashboard");
         } else {
             System.out.println("Unauthorized User. Please contact administrator");
+            halter.render();
             Router.navigate("main-menu");
         }
         

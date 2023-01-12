@@ -4,38 +4,36 @@ import controllers.Admin;
 import interfaces.IDefaultView;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import layouts.Banner;
 import layouts.DisplayError;
 import layouts.Field;
+import layouts.Halter;
 import routes.Router;
 import views.Enums.Department;
 
 public class AddDoctor implements IDefaultView {
     private HashMap<String, String> data = new HashMap<>();
     private Scanner scanner = new Scanner(System.in);
+    private Halter halter = new Halter();
     
     @Override
     public void show() {
-        try {
-            System.out.println("-- ADD DOCTOR --");
+        new Banner(false, "ADD DOCTOR").render();
 
-            System.out.println("* Account Information:");
-            data.put("username", new Field("New Username").renderAndReturn());
-            data.put("password", new Field("New Password").renderAndReturn());
+        System.out.println("* Account Information:");
+        data.put("username", new Field("New Username").renderAndReturn());
+        data.put("password", new Field("New Password").renderAndReturn());
 
-            System.out.println("* Personal Information:");
-            data.put("first-name", new Field("First Name").renderAndReturn());
-            data.put("last-name", new Field("Last Name").renderAndReturn());
-            data.put("address", new Field("Address").renderAndReturn());
-            data.put("contact", new Field("Contact", true).renderAndReturn());
-            data.put("department", this.displayDepartment());
-            this.displayConfirmation();
-            
-        } catch (Exception e) {
-            System.out.println("Invalid Input. Doctor not saved. Reverting..");
-            Router.navigate("admin-dashboard");
-        }
+        System.out.println("* Personal Information:");
+        data.put("first-name", new Field("First Name").renderAndReturn());
+        data.put("last-name", new Field("Last Name").renderAndReturn());
+        data.put("address", new Field("Address").renderAndReturn());
+        data.put("contact", new Field("Contact").renderAndReturn());
+        data.put("department", this.displayDepartment());
+        
+        this.displayConfirmation();
     }
     
     private void displayConfirmation() {
@@ -60,32 +58,39 @@ public class AddDoctor implements IDefaultView {
         if (choice.toUpperCase().equals("Y")) {
             this.save();
         } else {
-            System.out.println("Doctor profile not save. Aborting...");
-            this.show();
+            System.out.println("Doctor profile not save.");
         }
+        
+        halter.render();
+        Router.navigate("admin-dashboard");
     }
     
     private String displayDepartment() {
-        Department[] departments = Department.values();
-        int count = 1;
-        
-        System.out.println("Department: ");
-        
-        for (Department department : departments) {
-            System.out.println("[" + count + "] -> " + department);
-            count++;
+        while (true) {
+            try {
+                Department[] departments = Department.values();
+                int count = 1;
+
+                System.out.println("Department: ");
+
+                for (Department department : departments) {
+                    System.out.println("[" + count + "] -> " + department);
+                    count++;
+                }
+
+                System.out.print("Choose Department: ");
+                int choice = scanner.nextInt() - 1;
+
+                if (choice < 0 || choice >= departments.length) {
+                    System.out.println("Invalid Choice. Try again.");
+                }
+
+                return departments[choice].toString();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid Choice. Try again.");
+                scanner.nextLine();
+            }
         }
-        
-        System.out.print("Choose Department: ");
-        int choice = scanner.nextInt() - 1;
-        
-        if (choice < 0 || choice >= departments.length) {
-            count = 1;
-            System.out.println("Invalid Choice. Try Again");
-            this.displayDepartment();
-        }
-        
-        return departments[choice].toString();
     }
     
     private void save() {
@@ -94,10 +99,8 @@ public class AddDoctor implements IDefaultView {
         if (!errors.isEmpty()) {
             new Banner(false, "Errors Detected. Not Saved.").render();
             new DisplayError(errors).render();
-            this.show();
         } else {
             System.out.println("Doctor Profile Saved.");
-            Router.navigate("go-back");
         }
     }
 

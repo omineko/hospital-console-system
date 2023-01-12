@@ -1,5 +1,6 @@
 package views.doctor;
 
+import controllers.Doctor;
 import controllers.Receptionist;
 import interfaces.IDefaultView;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class ListPatients implements IDefaultView {
 
     @Override
     public void show() {
-        ArrayList<User> patients = Receptionist.listPatients();
+        ArrayList<User> patients = Doctor.listPatients();
         Formatter fmt = new Formatter();  
         fmt.format("%15s %15s %15s %15s %15s %15s %15s %15s %15s \n", "ID", "USERNAME", "FIRST NAME", "LAST NAME", "ADDRESS","CONTACT","SEX", "BLOOD TYPE", "INITIAL DIAGNOSIS");
         for(User user : patients){

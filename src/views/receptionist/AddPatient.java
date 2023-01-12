@@ -30,7 +30,7 @@ public class AddPatient implements IDefaultView {
             data.put("first-name", new Field("First Name").renderAndReturn());
             data.put("last-name", new Field("Last Name").renderAndReturn());
             data.put("address", new Field("Address").renderAndReturn());
-            data.put("contact", new Field("Contact", true).renderAndReturn());
+            data.put("contact", new Field("Contact").renderAndReturn());
             data.put("sex", new ChoiceField(Enums.Sex.values(), "Sex").renderAndReturn());
             data.put("blood-type", new ChoiceField(Enums.BloodType.values(), "Blood Type").renderAndReturn());
             data.put("initial-diagnosis", new Field("Initial Diagnosis").renderAndReturn());

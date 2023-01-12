@@ -6,6 +6,7 @@ import views.login.*;
 import views.*;
 import views.admin.*;
 import views.dashboard.*;
+import views.doctor.ReleasePatient;
 import views.receptionist.AddPatient;
 import views.receptionist.AssignPatient;
 import views.receptionist.ListPatients;
@@ -51,4 +52,7 @@ public interface Routes {
     Route addPatient = new Route("Add Patient", new AddPatient());
     Route listPatients = new Route("List Patients", new ListPatients());
     Route assignPatient = new Route("Assign Patient", new AssignPatient());
+    
+    // doctor
+    Route releasePatient = new Route("Release Patient", new ReleasePatient());
 }

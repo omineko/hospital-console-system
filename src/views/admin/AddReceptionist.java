@@ -1,5 +1,3 @@
-
-
 package views.admin;
 
 import controllers.Admin;
@@ -10,15 +8,17 @@ import java.util.Scanner;
 import layouts.Banner;
 import layouts.DisplayError;
 import layouts.Field;
+import layouts.Halter;
 import routes.Router;
 
 public class AddReceptionist implements IDefaultView {
-    HashMap<String, String> data = new HashMap<>();
-    Scanner scanner = new Scanner(System.in);
+    private HashMap<String, String> data = new HashMap<>();
+    private Scanner scanner = new Scanner(System.in);
+    private Halter halter = new Halter();
 
     @Override
     public void show() {
-        System.out.println("-- ADD RECEPTIONIST --");
+        new Banner(false, "ADD ARECEPTIONIST").render();
         
         System.out.println("* Account Information:");
         data.put("username", new Field("New Username").renderAndReturn());
@@ -28,22 +28,19 @@ public class AddReceptionist implements IDefaultView {
     }
     
     public void save() {
-
         ArrayList<HashMap<String, String>> errors = Admin.addReceptionist(data);
         
         if (!errors.isEmpty()) {
             new Banner(false, "Errors Detected. Not Saved.").render();
             new DisplayError(errors).render();
-            this.show();
         } else {
             System.out.println("Recptionist Profile Saved.");
-            Router.navigate("go-back");
         }
     }
     
     private void displayConfirmation() {
         // review information
-        new Banner(false, "Review Information").render();
+        new Banner(false, "REVIEW INFORMATION").render();
         
         System.out.printf("[%s]: %s \n", "USERNAME", data.get("username"));
         System.out.printf("[%s]: %s \n", "PASSWORD", data.get("password"));
@@ -55,9 +52,11 @@ public class AddReceptionist implements IDefaultView {
         if (choice.toUpperCase().equals("Y")) {
             this.save();
         } else {
-            System.out.println("Receptionist profile not save. Retrying...");
-            this.show();
+            System.out.println("Receptionist profile not save.");
         }
+
+        halter.render();
+        Router.navigate("admin-dashboard");
     }
 
 }

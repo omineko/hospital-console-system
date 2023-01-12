@@ -10,6 +10,7 @@ public class Users implements IDB {
     
     protected ArrayList<HashMap<String, String>> checkAccount(HashMap<String, String> data) {
         ArrayList<HashMap<String, String>> errors = new ArrayList<>();
+        String VALID_USERNAME_REGEX = "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$";
         
         for (User user : table) {
             if (user.getRole().equals(data.get("role"))) {
@@ -29,6 +30,15 @@ public class Users implements IDB {
             HashMap<String, String> error = new HashMap<>();
             error.put("path", "Username");
             error.put("errType", "BLANK_ERROR");
+
+            errors.add(error);
+        }
+        
+        // username is valid
+        if (!data.get("username").matches(VALID_USERNAME_REGEX)) {
+            HashMap<String, String> error = new HashMap<>();
+            error.put("path", "Username");
+            error.put("errType", "INVALID_ERROR");
 
             errors.add(error);
         }
@@ -89,6 +99,15 @@ public class Users implements IDB {
             }
         }
         return users;
+    }
+    
+    public boolean update(User user) {
+        boolean isRemoved = this.remove(user.getId(), user.getRole());
+        
+        if (isRemoved) {
+            table.add(user);
+            return true;
+        } else return false;
     }
 
     @Override

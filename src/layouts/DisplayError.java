@@ -13,23 +13,28 @@ public class DisplayError implements IDefaultLayout {
 
     @Override
     public void render() {
-        System.out.println(errors.size());
         for (HashMap<String, String> error : errors) {
             switch (error.get("errType")) {
+                case "INVALID_ERROR":
+                    System.out.printf("ERROR: %s is in invalid format \n", error.get("path"));
+                    break;
                 case "UNIQ_ERROR":
-                    System.err.printf("ERROR: %s must BE UNIQUE \n", error.get("path"));
+                    System.out.printf("ERROR: %s must BE UNIQUE \n", error.get("path"));
                     break;
                 case "BLANK_ERROR":
-                    System.err.printf("ERROR: %s must NOT BE BLANK \n", error.get("path"));
+                    System.out.printf("ERROR: %s must NOT BE BLANK \n", error.get("path"));
                     break;
                 case "NAME_ILLEGAL_ERROR":
-                    System.err.printf("ERROR: %s: Illegal character detected. Only letters allowed \n", error.get("path"));
+                    System.out.printf("ERROR: %s: Illegal character detected. Only letters allowed \n", error.get("path"));
+                    break;
+                case "NUMBER_ILLEGAL_ERROR":
+                    System.out.printf("ERROR: %s: Illegal character detected. Only numbers are allowed \n", error.get("path"));
                     break;
                 case "NOT_FOUND":
-                    System.err.println("User not found \n");
+                    System.out.printf("ERROR: %s: User not found \n", error.get("path"));
                     break;
                 default:
-                    System.err.println("ERROR: Something went wrong. \n");
+                    System.out.print("ERROR: Something went wrong. \n");
             }
         }
     }
