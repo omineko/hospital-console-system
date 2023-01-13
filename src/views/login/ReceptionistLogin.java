@@ -6,12 +6,13 @@ import java.util.HashMap;
 import java.util.Scanner;
 import layouts.Banner;
 import layouts.Field;
+import layouts.Halter;
 import routes.Router;
-
 
 public class ReceptionistLogin implements IDefaultView {
     private HashMap<String, String> credentials = new HashMap<>();
     private Scanner scanner = new Scanner(System.in);
+    private Halter halter = new Halter();
     
     @Override
     public void show() {
@@ -31,9 +32,11 @@ public class ReceptionistLogin implements IDefaultView {
         
         if (Auth.login(credentials)) {
             System.out.println("Logged In");
+            halter.render();
             Router.navigate("receptionist-dashboard");
         } else {
             System.out.println("Unauthorized User. Please contact administrator");
+            halter.render();
             Router.navigate("main-menu");
         }
         

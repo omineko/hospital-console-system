@@ -1,6 +1,5 @@
 package views.receptionist;
 
-import controllers.Admin;
 import controllers.Receptionist;
 import interfaces.IDefaultView;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import layouts.DisplayError;
 import layouts.Field;
 import layouts.Halter;
 import models.Patient;
-import models.User;
 import routes.Router;
 
 public class RemovePatient implements IDefaultView {

@@ -23,7 +23,6 @@ public interface Routes {
     
     // main view
     Route mainMenu = new Route("Main Menu", new MainMenu());
-    Route goBack = new Route("Go Back", new GoBack());
     Route quit = new Route("Quit", new Quit());
     Route signOut = new Route("Sign Out", new SignOut());
     

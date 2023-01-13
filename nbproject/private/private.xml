@@ -3,23 +3,42 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/layouts/DisplayError.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/SignOut.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/RemoveAdmin.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/doctor/ListPatients.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/controllers/Admin.java</file>
             <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/controllers/Receptionist.java</file>
             <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/database/Doctors.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/receptionist/RemovePatient.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/login/ReceptionistLogin.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/login/DoctorLogin.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/MainMenu.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/AddAdmin.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/AddReceptionist.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/login/PatientLogin.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/database/Users.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/Quit.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/receptionist/AddPatient.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/dashboard/ReceptionistDashboard.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/ListAdmins.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/interfaces/Routes.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/main/Main.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/layouts/DisplayError.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/RemoveDoctor.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/dashboard/PatientDashboard.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/controllers/Auth.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/Enums.java</file>
             <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/ListDoctors.java</file>
             <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/AddDoctor.java</file>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/MainMenu.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/receptionist/AssignPatient.java</file>
             <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/dashboard/AdminDashboard.java</file>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/AddAdmin.java</file>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/layouts/Choice.java</file>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/database/Patients.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/doctor/ReleasePatient.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/RemoveReceptionist.java</file>
             <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/routes/Router.java</file>
             <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/login/AdminLogin.java</file>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/AddReceptionist.java</file>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/database/Users.java</file>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/admin/ListAdmins.java</file>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/layouts/ChoiceField.java</file>
-            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/layouts/Field.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/controllers/Doctor.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/patient/ViewInformation.java</file>
+            <file>file:/home/omineko/Documents/NetBeansProjects/hospital-console-system/src/views/dashboard/DoctorDashboard.java</file>
         </group>
     </open-files>
 </project-private>

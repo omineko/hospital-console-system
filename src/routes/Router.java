@@ -2,8 +2,6 @@ package routes;
 
 import java.util.HashMap;
 import interfaces.Routes;
-import java.util.Stack;
-import layouts.Halter;
 import models.User;
 
 /**
@@ -13,8 +11,6 @@ import models.User;
  */
 
 public abstract class Router implements Routes {
-    private static Stack<String> history = new Stack<>();
-    private static boolean isLoggedIn = false;
     private static User userSession;
 
     public static boolean isUserLoggedIn(User user) {
@@ -31,7 +27,6 @@ public abstract class Router implements Routes {
     
     public static void init() {
         routes.put("main-menu", mainMenu);
-        routes.put("go-back", goBack);
         routes.put("quit", quit);
         routes.put("sign-out", signOut);
         
@@ -76,26 +71,8 @@ public abstract class Router implements Routes {
         return routes;
     }
     
-    public static boolean toggleLoggedIn() {
-        isLoggedIn = !isLoggedIn;
-        return isLoggedIn;
-    }
-    
-    public static void goBack() {
-        if (history.size() > 1) {
-            // TODO: Refactor this implementation later
-            history.pop();
-            history.pop();
-            
-            refresh();
-        } else {
-            // exit
-            System.exit(0);
-        }
-    }
-    
-    public static void refresh() {
-        navigate(history.peek());
+    public static void quit() {
+        System.exit(0);
     }
     
     public static boolean peek(String routeName) {
@@ -106,14 +83,6 @@ public abstract class Router implements Routes {
     
     public static String navigate(String routeName) {
         if (routes.containsKey(routeName)) {
-            if (!history.isEmpty()) {
-                
-                if (!routeName.equals(history.peek())) history.add(routeName);
-            } else {
-                
-                history.add(routeName);
-            }
-            
             return routes.get(routeName).navigate();
         }
         

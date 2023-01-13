@@ -33,6 +33,9 @@ public class DisplayError implements IDefaultLayout {
                 case "NOT_FOUND":
                     System.out.printf("ERROR: %s: User not found \n", error.get("path"));
                     break;
+                case "ALREADY_RELEASED":
+                    System.out.printf("ERROR: %s: User already released \n", error.get("path"));
+                    break;
                 case "SESSION_NOT_EXPIRED":
                     System.out.printf("ERROR: %s: User is currently in session. \n", error.get("path"));
                     break;

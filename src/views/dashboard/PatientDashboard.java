@@ -1,11 +1,9 @@
 package views.dashboard;
 
 import interfaces.IDefaultView;
-import java.util.ArrayList;
 import java.util.PriorityQueue;
 import layouts.Banner;
 import layouts.Choice;
-import routes.Router;
 
 public class PatientDashboard implements IDefaultView {
     private PriorityQueue<String> selectedRoutes = new PriorityQueue<>();

@@ -4,14 +4,14 @@ import controllers.Admin;
 import interfaces.IDefaultView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import layouts.Banner;
+import layouts.ChoiceField;
 import layouts.DisplayError;
 import layouts.Field;
 import layouts.Halter;
 import routes.Router;
-import views.Enums.Department;
+import views.Enums;
 
 public class AddDoctor implements IDefaultView {
     private HashMap<String, String> data = new HashMap<>();
@@ -31,7 +31,7 @@ public class AddDoctor implements IDefaultView {
         data.put("last-name", new Field("Last Name").renderAndReturn());
         data.put("address", new Field("Address").renderAndReturn());
         data.put("contact", new Field("Contact").renderAndReturn());
-        data.put("department", this.displayDepartment());
+        data.put("department", new ChoiceField(Enums.Department.values(), "Department").renderAndReturn());
         
         this.displayConfirmation();
 
@@ -55,41 +55,12 @@ public class AddDoctor implements IDefaultView {
         
         // confirm
         System.out.println("Are you sure the details were correct? [Y]");
-        scanner.nextLine();
         String choice = scanner.nextLine();
         
         if (choice.toUpperCase().equals("Y")) {
             this.save();
         } else {
             System.out.println("Doctor profile not save.");
-        }
-    }
-    
-    private String displayDepartment() {
-        while (true) {
-            try {
-                Department[] departments = Department.values();
-                int count = 1;
-
-                System.out.println("Department: ");
-
-                for (Department department : departments) {
-                    System.out.println("[" + count + "] -> " + department);
-                    count++;
-                }
-
-                System.out.print("Choose Department: ");
-                int choice = scanner.nextInt() - 1;
-
-                if (choice < 0 || choice >= departments.length) {
-                    System.out.println("Invalid Choice. Try again.");
-                }
-
-                return departments[choice].toString();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid Choice. Try again.");
-                scanner.nextLine();
-            }
         }
     }
     

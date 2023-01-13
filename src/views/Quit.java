@@ -10,7 +10,7 @@ public class Quit implements IDefaultView {
 
     @Override
     public void show() {
-        Router.goBack();
+        Router.quit();
     }
 
 }

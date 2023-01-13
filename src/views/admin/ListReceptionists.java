@@ -7,7 +7,6 @@ import java.util.Formatter;
 import java.util.Scanner;
 import layouts.Banner;
 import layouts.Halter;
-import models.Doctor;
 import models.User;
 import routes.Router;
 

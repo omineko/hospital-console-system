@@ -1,7 +1,6 @@
 package views.patient;
 
 import interfaces.IDefaultView;
-import java.util.Formatter;
 import layouts.Banner;
 import layouts.Halter;
 import models.Patient;
@@ -20,8 +19,8 @@ public class ViewInformation implements IDefaultView {
             new Banner("PATIENT INFORMATION").render();
             
             System.out.println("* Account Information:");
-            System.out.printf("[]: %s \n", patient.getUsername());
-            System.out.printf("[]: %s \n", patient.getPassword());
+            System.out.printf("[USERNAME]: %s \n", patient.getUsername());
+            System.out.printf("[PASSWORD]: %s \n", patient.getPassword());
             
             System.out.println("* Personal Information:");
             System.out.printf("[FIRST NAME]: %s \n", patient.getFirstName());

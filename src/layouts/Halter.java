@@ -2,7 +2,6 @@ package layouts;
 
 import interfaces.IDefaultLayout;
 import java.util.Scanner;
-import jdk.javadoc.internal.doclets.formats.html.markup.Text;
 
 public class Halter implements IDefaultLayout {
     private Scanner scanner = new Scanner(System.in);

@@ -26,4 +26,9 @@ public class Auth {
         
         return false;
     }
+    
+    public static void signOut() {
+        Router.setUserSession(null);
+        Router.navigate("main-menu");
+    }
 }

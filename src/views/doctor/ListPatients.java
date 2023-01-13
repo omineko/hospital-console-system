@@ -1,7 +1,6 @@
 package views.doctor;
 
 import controllers.Doctor;
-import controllers.Receptionist;
 import interfaces.IDefaultView;
 import java.util.ArrayList;
 import java.util.Formatter;

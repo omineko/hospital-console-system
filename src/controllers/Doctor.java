@@ -2,7 +2,6 @@ package controllers;
 
 import database.Doctors;
 import database.Patients;
-import database.Users;
 import java.util.ArrayList;
 import java.util.HashMap;
 import models.User;
@@ -24,20 +23,20 @@ public class Doctor {
                 } else {
                     HashMap<String, String> error = new HashMap<>();
                     error.put("path", "Patient");
-                    error.put("errType", "Patient is already released");
+                    error.put("errType", "ALREADY_RELEASED");
                     errors.add(error);
                 }
             } else {
                 HashMap<String, String> error = new HashMap<>();
                 error.put("path", "Patient");
-                error.put("errType", "Patient does not exist.");
+                error.put("errType", "NOT_FOUND");
                 errors.add(error);
             }
            
         } else {
             HashMap<String, String> error = new HashMap<>();
             error.put("path", "Patient");
-            error.put("errType", "Patient does not exist.");
+            error.put("errType", "NOT FOUND");
             errors.add(error);
         }
         
