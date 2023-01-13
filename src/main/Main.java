@@ -2,6 +2,8 @@ package main;
 
 import routes.Router;
 import database.Users;
+import static routes.Router.init;
+import static routes.Router.navigate;
 
 public class Main extends Router {
     

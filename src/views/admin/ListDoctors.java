@@ -24,14 +24,21 @@ public class ListDoctors implements IDefaultView {
         }
         System.out.println(fmt);
     }
-
+    
     @Override
-    public void show() {
+    public boolean peek() {
         ArrayList<User> doctors = Admin.listDoctors();
         
         if (doctors.isEmpty()) {
              new Banner("NO DOCTORS FOUND.").render();
         } else this.listDoctors(doctors);
+        
+        return !doctors.isEmpty();
+    }
+
+    @Override
+    public void show() {
+        this.peek();
         
         halter.render();
         Router.navigate("admin-dashboard");

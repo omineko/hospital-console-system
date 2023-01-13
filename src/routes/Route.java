@@ -25,4 +25,9 @@ public class Route implements IRoute {
     public String getName() {
         return this.name;
     }
+    
+    @Override
+    public boolean peek() {
+        return this.view.peek();
+    }
 }

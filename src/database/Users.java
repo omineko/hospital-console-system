@@ -4,6 +4,7 @@ import interfaces.IDB;
 import java.util.ArrayList;
 import java.util.HashMap;
 import models.User;
+import routes.Router;
 
 public class Users implements IDB {
     protected static ArrayList<User> table = new ArrayList<>();
@@ -67,15 +68,32 @@ public class Users implements IDB {
     }
 
     @Override
-    public boolean remove(String id, String role) {
+    public ArrayList<HashMap<String, String>> remove(String id, String role) {
+        ArrayList<HashMap<String, String>> errors = new ArrayList<>();
+        
         for (User user : table) {
             if (user.getId().equals(id) && user.getRole().equals(role)) {
-                table.remove(user);
-                return true;
+                // if id is in session
+                if (Router.isUserLoggedIn(user)) {
+                    HashMap<String, String> error = new HashMap<>();
+                    error.put("path", user.getRole());
+                    error.put("errType", "SESSION_NOT_EXPIRED");
+                    errors.add(error);
+                    
+                    return errors;
+                } else {
+                    table.remove(user);
+                    return errors; 
+                }
             }
         }
+
+        HashMap<String, String> error = new HashMap<>();
+        error.put("path", role);
+        error.put("errType", "NOT_FOUND");
+        errors.add(error);
         
-        return false;
+        return errors;
     }
 
     @Override
@@ -102,9 +120,9 @@ public class Users implements IDB {
     }
     
     public boolean update(User user) {
-        boolean isRemoved = this.remove(user.getId(), user.getRole());
+        ArrayList<HashMap<String, String>> errors = this.remove(user.getId(), user.getRole());
         
-        if (isRemoved) {
+        if (errors.isEmpty()) {
             table.add(user);
             return true;
         } else return false;

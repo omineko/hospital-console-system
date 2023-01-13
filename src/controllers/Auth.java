@@ -19,6 +19,7 @@ public class Auth {
             String password = user.getPassword();
             
             if (username.equals(data.get("username")) && password.equals(data.get("password"))) {
+                Router.setUserSession(user);
                 return true;
             }
         }

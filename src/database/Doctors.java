@@ -77,7 +77,7 @@ public class Doctors extends Users {
         return errors;
     }
 
-    public boolean remove(String id) {
+    public ArrayList<HashMap<String, String>> remove(String id) {
         return super.remove(id, "doctor");
     }
 

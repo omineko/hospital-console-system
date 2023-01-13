@@ -23,15 +23,15 @@ public class Admin {
         return new Users().create(data);
     }
     
-    public static boolean removeDoctor(String id) {
+    public static ArrayList<HashMap<String, String>> removeDoctor(String id) {
         return new Doctors().remove(id);
     }
     
-    public static boolean removeReceptionist(String id) {
+    public static ArrayList<HashMap<String, String>> removeReceptionist(String id) {
         return new Users().remove(id, "receptionist");
     }
     
-    public static boolean removeAdmin(String id) {
+    public static ArrayList<HashMap<String, String>> removeAdmin(String id) {
         return new Users().remove(id, "admin");
     }
     

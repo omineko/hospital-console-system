@@ -23,14 +23,21 @@ public class ListReceptionists implements IDefaultView {
         }
         System.out.println(fmt);
     }
-
+    
     @Override
-    public void show() {
+    public boolean peek() {
         ArrayList<User> receptionists = Admin.listReceptionists();
         
         if (receptionists.isEmpty()) {
              new Banner("NO RECEPTIONISTS FOUND.").render();
         } else this.listReceptionists(receptionists);
+        
+        return !receptionists.isEmpty();
+    }
+
+    @Override
+    public void show() {
+        this.peek();
         
         halter.render();
         Router.navigate("admin-dashboard");

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import interfaces.Routes;
 import java.util.Stack;
 import layouts.Halter;
+import models.User;
 
 /**
  * This class inherits the Routes interface.
@@ -14,6 +15,15 @@ import layouts.Halter;
 public abstract class Router implements Routes {
     private static Stack<String> history = new Stack<>();
     private static boolean isLoggedIn = false;
+    private static User userSession;
+
+    public static boolean isUserLoggedIn(User user) {
+        return user.getId().equals(userSession.getId());
+    }
+
+    public static void setUserSession(User user) {
+        Router.userSession = user;
+    }
     
     public static void init() {
         routes.put("main-menu", mainMenu);
@@ -77,6 +87,12 @@ public abstract class Router implements Routes {
     
     public static void refresh() {
         navigate(history.peek());
+    }
+    
+    public static boolean peek(String routeName) {
+        if (routes.containsKey(routeName)) return routes.get(routeName).peek();
+        
+        return false;
     }
     
     public static String navigate(String routeName) {

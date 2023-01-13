@@ -58,7 +58,7 @@ public class Receptionist {
         return new Patients().findOne(id);
     }
     
-    public static boolean removePatient(String id) {
+    public static ArrayList<HashMap<String, String>> removePatient(String id) {
         return new Patients().remove(id);
     }
 }

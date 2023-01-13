@@ -24,14 +24,21 @@ public class ListAdmins implements IDefaultView {
         }
         System.out.println(fmt);
     }
-
+    
     @Override
-    public void show() {
+    public boolean peek() {
         ArrayList<User> admins = Admin.listAdmins();
         
         if (admins.isEmpty()) {
              new Banner("NO ADMINS FOUND.").render();
         } else this.listAdmins(admins);
+        
+        return !admins.isEmpty();
+    }
+
+    @Override
+    public void show() {
+        this.peek();
 
         halter.render();
         Router.navigate("admin-dashboard");
