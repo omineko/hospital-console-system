@@ -53,14 +53,14 @@ This contain the pages that will be rendered on each route.
 - [x] remove admin (completed)
 
 **doctor**
-- [ ] release patient
-- [ ] list patients 
+- [x] release patient (completed)
+- [x] list patients (completed)
 
 **patient**
-- [ ] view information / status
+- [x] view information / status (completed)
 
 **receptionist**
-- [ ] assign patient to doctor
-- [x] list patients
-- [x] add patient
-- [ ] remove patient
+- [x] assign patient to doctor (completed)
+- [x] list patients (completed)
+- [x] add patient (completed)
+- [x] remove patient (completed)
