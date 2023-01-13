@@ -9,15 +9,14 @@ public class DoctorDashboard implements IDefaultView {
     private PriorityQueue<String> selectedRoutes = new PriorityQueue<>();
     
     public DoctorDashboard() {
-        selectedRoutes.add("admin-login");
-        selectedRoutes.add("doctor-login");
-        selectedRoutes.add("patient-login");
-        selectedRoutes.add("receptionist-login");
+        selectedRoutes.add("list-patients@doctor");
+        selectedRoutes.add("release-patient");
+        selectedRoutes.add("sign-out");
     }
     
     @Override
     public void show() {
-        Banner banner = new Banner("Apple Lake Hospital");
+        Banner banner = new Banner("Doctor Dashboard");
         Choice choice = new Choice(selectedRoutes);
         
         banner.render();

@@ -12,6 +12,7 @@ public class ReceptionistDashboard implements IDefaultView {
         selectedRoutes.add("add-patient");
         selectedRoutes.add("list-patients");
         selectedRoutes.add("assign-patient");
+        selectedRoutes.add("remove-patient");
         selectedRoutes.add("sign-out");
     }
     

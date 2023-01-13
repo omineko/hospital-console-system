@@ -25,6 +25,9 @@ public class AddAdmin implements IDefaultView {
         data.put("password", new Field("New Password").renderAndReturn());
         
         this.displayConfirmation();
+
+        halter.render();
+        Router.navigate("admin-dashboard");
     }
     
     public void save() {
@@ -54,9 +57,6 @@ public class AddAdmin implements IDefaultView {
         } else {
             System.out.println("Admin profile not save.");
         }
-
-        halter.render();
-        Router.navigate("admin-dashboard");
     }
 
 }

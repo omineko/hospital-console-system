@@ -1,6 +1,5 @@
 package views.receptionist;
 
-import controllers.Admin;
 import controllers.Receptionist;
 import interfaces.IDefaultView;
 import java.util.ArrayList;
@@ -10,37 +9,32 @@ import layouts.Banner;
 import layouts.ChoiceField;
 import layouts.DisplayError;
 import layouts.Field;
+import layouts.Halter;
 import routes.Router;
 import views.Enums;
 
 public class AddPatient implements IDefaultView {
     private HashMap<String, String> data = new HashMap<>();
     private Scanner scanner = new Scanner(System.in);
+    private Halter halter = new Halter();
 
     @Override
     public void show() {
-        try {
-            System.out.println("-- ADD PATIENT --");
+        System.out.println("-- ADD PATIENT --");
 
-            System.out.println("* Account Information:");
-            data.put("username", new Field("New Username").renderAndReturn());
-            data.put("password", new Field("New Password").renderAndReturn());
+        System.out.println("* Account Information:");
+        data.put("username", new Field("New Username").renderAndReturn());
+        data.put("password", new Field("New Password").renderAndReturn());
 
-            System.out.println("* Personal Information:");
-            data.put("first-name", new Field("First Name").renderAndReturn());
-            data.put("last-name", new Field("Last Name").renderAndReturn());
-            data.put("address", new Field("Address").renderAndReturn());
-            data.put("contact", new Field("Contact").renderAndReturn());
-            data.put("sex", new ChoiceField(Enums.Sex.values(), "Sex").renderAndReturn());
-            data.put("blood-type", new ChoiceField(Enums.BloodType.values(), "Blood Type").renderAndReturn());
-            data.put("initial-diagnosis", new Field("Initial Diagnosis").renderAndReturn());
-            this.displayConfirmation();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Invalid Input. Patient not saved. Reverting..");
-            Router.navigate("receptionist-dashboard");
-        }
+        System.out.println("* Personal Information:");
+        data.put("first-name", new Field("First Name").renderAndReturn());
+        data.put("last-name", new Field("Last Name").renderAndReturn());
+        data.put("address", new Field("Address").renderAndReturn());
+        data.put("contact", new Field("Contact").renderAndReturn());
+        data.put("sex", new ChoiceField(Enums.Sex.values(), "Sex").renderAndReturn());
+        data.put("blood-type", new ChoiceField(Enums.BloodType.values(), "Blood Type").renderAndReturn());
+        data.put("initial-diagnosis", new Field("Initial Diagnosis").renderAndReturn());
+        this.displayConfirmation();
     }
     
     private void displayConfirmation() {
@@ -66,9 +60,11 @@ public class AddPatient implements IDefaultView {
         if (choice.toUpperCase().equals("Y")) {
             this.save();
         } else {
-            System.out.println("Patient profile not save. Aborting...");
-            this.show();
+            System.out.println("Action aborted");
         }
+        
+        halter.render();
+        Router.navigate("receptionist-dashboard");
     }
     
     private void save() {
@@ -77,10 +73,8 @@ public class AddPatient implements IDefaultView {
         if (!errors.isEmpty()) {
             new Banner(false, "Errors Detected. Not Saved.").render();
             new DisplayError(errors).render();
-            this.show();
         } else {
             System.out.println("Patient Profile Saved.");
-            Router.navigate("go-back");
         }
     }
     

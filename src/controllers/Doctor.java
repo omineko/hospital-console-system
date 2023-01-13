@@ -1,42 +1,75 @@
-
-
 package controllers;
 
+import database.Doctors;
 import database.Patients;
 import database.Users;
 import java.util.ArrayList;
 import java.util.HashMap;
 import models.User;
 import models.Patient;
+import routes.Router;
 
 public class Doctor {
     public static ArrayList<HashMap<String, String>> releasePatient(String id) {
-        Patient patient = new Patients().findOne(id);
+        User userSession = Router.getUserSession();
+        models.Doctor doctor = new Doctors().findOne(userSession.getId());
         ArrayList<HashMap<String, String>> errors = new ArrayList<>();
         
-        if (patient != null) {
+        if (doctor.getPatients().contains(id)) {
+            Patient patient = new Patients().findOne(id);
             
-            if (!patient.isReleased()) {
-                patient.setIsReleased(true);
-                new Patients().update(patient);
+            if (patient != null) {
+                if (!patient.isReleased()) {
+                    patient.setIsReleased(true);
+                } else {
+                    HashMap<String, String> error = new HashMap<>();
+                    error.put("path", "Patient");
+                    error.put("errType", "Patient is already released");
+                    errors.add(error);
+                }
             } else {
-                errors.add(addError("Patient is already released"));
+                HashMap<String, String> error = new HashMap<>();
+                error.put("path", "Patient");
+                error.put("errType", "Patient does not exist.");
+                errors.add(error);
             }
            
-        } else errors.add(addError("Patient ID not found"));
+        } else {
+            HashMap<String, String> error = new HashMap<>();
+            error.put("path", "Patient");
+            error.put("errType", "Patient does not exist.");
+            errors.add(error);
+        }
         
         return errors;
     }
     
     public static ArrayList<User> listPatients() {
-        return new Users().find("patient");
+        ArrayList<User> list = new ArrayList<>();
+        User userSession = Router.getUserSession();
+        
+        if (userSession.getRole().equals("doctor")) {
+            models.Doctor doctor = new Doctors().findOne(userSession.getId());
+            ArrayList<String> patients = doctor.getPatients();
+            
+            for (User patient : new Patients().find()) {
+                if (patients.contains(patient.getId())) {
+                    System.out.println(patient.getUsername());
+                    list.add(patient);
+                }
+            }
+        }
+        
+        return list;
     }
     
-    private static HashMap<String, String> addError(String errType) {
-        HashMap<String, String> error = new HashMap<>();
-
-        error.put("errType", errType);
+    public static Patient findPatient(String id) {
+        models.Doctor userSession = (models.Doctor) Router.getUserSession();
         
-        return error;
+        if (userSession.getRole().equals("doctor") && userSession.getPatients().contains(id)) {
+            return new Patients().findOne(id);
+        }
+        
+        return null;
     }
 }

@@ -5,9 +5,12 @@ import controllers.Receptionist;
 import interfaces.IDefaultView;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.HashMap;
 import java.util.Scanner;
 import layouts.Banner;
+import layouts.DisplayError;
 import layouts.Field;
+import layouts.Halter;
 import models.Patient;
 import models.User;
 import routes.Router;
@@ -15,15 +18,20 @@ import routes.Router;
 public class RemovePatient implements IDefaultView {
     private String id;
     private Scanner scanner = new Scanner(System.in);
+    private Halter halter = new Halter();
 
     @Override
     public void show() {
         new Banner(false, "Remove Patient").render();
-        Router.navigate("list-doctors");
+        boolean isPatientsExists = Router.peek("list-patients");
         
-        this.id = new Field("Enter Patient ID: ").renderAndReturn();
+        if (isPatientsExists) {
+            this.id = new Field("Enter Patient ID: ").renderAndReturn();
+            this.displayConfirmation(); 
+        }
         
-        this.displayConfirmation();
+        halter.render();
+        Router.navigate("receptionist-dashboard");
     }
     
     private void displayConfirmation() {
@@ -35,32 +43,30 @@ public class RemovePatient implements IDefaultView {
         String choice = scanner.nextLine();
         
         if (choice.toUpperCase().equals("Y")) {
-            boolean isSuccess = Receptionist.removePatient(this.id);
+            ArrayList<HashMap<String, String>> errors = Receptionist.removePatient(this.id);
             
-            if (isSuccess) {
-                System.out.println("Patient removed");
-                Router.navigate("go-back");
+            if (errors.isEmpty()) {
+                System.out.println("Patient removed.");
             } else {
-                System.out.println("ID not found. Please try again.");
+                new Banner(false, "Errors detected. Not saved.").render();
+                new DisplayError(errors).render();
             }
         } else {
             System.out.println("Action aborted.");
-            this.show();
         }
     }
     
     private void displayPatient() {
-        ArrayList<User> patients = Receptionist.listPatients();
-        Formatter fmt = new Formatter();  
-        fmt.format("%15s %15s %15s %15s %15s %15s %15s %15s %15s \n", "ID", "USERNAME", "FIRST NAME", "LAST NAME", "ADDRESS","CONTACT","SEX", "BLOOD TYPE", "INITIAL DIAGNOSIS");
-        for(User user : patients){
-            Patient patient = (Patient) user;
-            fmt.format("%15s %15s %15s %15s %15s %15s %15s %15s %15s \n", patient.getId(), patient.getUsername(), patient.getFirstName(), patient.getLastName(), patient.getAddress(), patient.getContact(), patient.getSex(), patient.getBloodType(), patient.getInitialDiagnosis());
-        }
-        System.out.println(fmt);
+        Patient patient = Receptionist.findPatient(this.id);
         
-        System.out.println("Press any to exit");
-        scanner.nextLine();
+        if (patient != null) {
+            Formatter fmt = new Formatter();  
+            fmt.format("%15s %15s %15s %15s %15s %15s %15s %15s %15s \n", "ID", "USERNAME", "FIRST NAME", "LAST NAME", "ADDRESS","CONTACT","SEX", "BLOOD TYPE", "INITIAL DIAGNOSIS");
+            fmt.format("%15s %15s %15s %15s %15s %15s %15s %15s %15s \n", patient.getId(), patient.getUsername(), patient.getFirstName(), patient.getLastName(), patient.getAddress(), patient.getContact(), patient.getSex(), patient.getBloodType(), patient.getInitialDiagnosis());
+            System.out.println(fmt);
+        } else {
+            new Banner("NO RECEPTIONISTS SELECTED").render();
+        }
     }
 
 }

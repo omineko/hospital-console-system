@@ -24,6 +24,10 @@ public abstract class Router implements Routes {
     public static void setUserSession(User user) {
         Router.userSession = user;
     }
+
+    public static User getUserSession() {
+        return userSession;
+    }
     
     public static void init() {
         routes.put("main-menu", mainMenu);
@@ -58,9 +62,14 @@ public abstract class Router implements Routes {
         routes.put("add-patient", addPatient);
         routes.put("list-patients", listPatients);
         routes.put("assign-patient", assignPatient);
+        routes.put("remove-patient", removePatient);
         
         // doctor
         routes.put("release-patient", releasePatient);
+        routes.put("list-patients@doctor", listPatientsATDoctor);
+        
+        // patient
+        routes.put("view-information", viewInformation);
     }
     
     public static HashMap<String, Route> getRoutes() {

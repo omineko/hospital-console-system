@@ -2,28 +2,25 @@ package views.dashboard;
 
 import interfaces.IDefaultView;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import layouts.Banner;
 import layouts.Choice;
 import routes.Router;
 
 public class PatientDashboard implements IDefaultView {
-    private ArrayList<String> selectedRoutes = new ArrayList<>();
+    private PriorityQueue<String> selectedRoutes = new PriorityQueue<>();
     
     public PatientDashboard() {
-        selectedRoutes.add("admin-login");
-        selectedRoutes.add("doctor-login");
-        selectedRoutes.add("patient-login");
-        selectedRoutes.add("receptionist-login");
+        selectedRoutes.add("view-information");
+        selectedRoutes.add("sign-out");
     }
     
     @Override
     public void show() {
-//        Banner banner = new Banner("Apple Lake Hospital");
-//        Choice choice = new Choice(selectedRoutes);
-//        
-//        banner.render();
-//        choice.render();
-
-        Router.navigate("main-menu");
+        Banner banner = new Banner("Patient Dashboard");
+        Choice choice = new Choice(selectedRoutes);
+        
+        banner.render();
+        choice.render();
     }
 }

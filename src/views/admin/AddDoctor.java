@@ -34,6 +34,9 @@ public class AddDoctor implements IDefaultView {
         data.put("department", this.displayDepartment());
         
         this.displayConfirmation();
+
+        halter.render();
+        Router.navigate("admin-dashboard");
     }
     
     private void displayConfirmation() {
@@ -60,9 +63,6 @@ public class AddDoctor implements IDefaultView {
         } else {
             System.out.println("Doctor profile not save.");
         }
-        
-        halter.render();
-        Router.navigate("admin-dashboard");
     }
     
     private String displayDepartment() {

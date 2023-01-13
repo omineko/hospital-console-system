@@ -1,6 +1,7 @@
 package layouts;
 
 import interfaces.IDefaultLayout;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ChoiceField implements IDefaultLayout {
@@ -10,24 +11,25 @@ public class ChoiceField implements IDefaultLayout {
     private String fieldName;
     
     public String renderAndReturn() {
-        this.render();
-        System.out.println("Enter Choice: ");
-        
-        try {
-            this.choice = scanner.nextInt();
-            
-            if (this.choice > 0 && this.choice <= this.values.length) {
-                return this.values[this.choice - 1].toString();
-            } 
-        } catch (Exception e) {
-            this.renderAndReturn();
+        while (true) {
+            try {
+                this.render();
+                System.out.println("Enter Choice: ");
+                
+                this.choice = scanner.nextInt();
+
+                if (this.choice > 0 && this.choice <= this.values.length) {
+                    return this.values[this.choice - 1].toString();
+                } else {
+                    System.out.println("Invalid Choice. Try again");
+                    new Halter().render();
+                }
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                System.out.println("Invalid Choice. Try again");
+                new Halter().render();
+            }
         }
-        
-        System.out.println("Invalid Choice. Try again");
-        new Halter().render();
-        
-        this.renderAndReturn();
-        return null;
     }
     
     public ChoiceField(Enum[] values, String fieldName) {

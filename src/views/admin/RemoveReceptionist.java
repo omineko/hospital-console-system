@@ -52,9 +52,6 @@ public class RemoveReceptionist implements IDefaultView {
         } else {
             System.out.println("Action aborted.");
         }
-
-        halter.render();
-        Router.navigate("admin-dashboard");
     }
     
     private void displayReceptionist() {

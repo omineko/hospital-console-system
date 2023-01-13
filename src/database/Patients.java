@@ -88,10 +88,6 @@ public class Patients extends Users {
     public ArrayList<User> find() {
         return super.find("patient");
     }
-    
-    public boolean update(Patient patient) {
-        return super.update((User) patient);
-    }
 
     @Override
     public void seed() {

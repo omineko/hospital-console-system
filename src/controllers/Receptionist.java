@@ -33,6 +33,7 @@ public class Receptionist {
             
             error.put("path", "Doctor");
             error.put("errType", "NOT_FOUND");
+            errors.add(error);
         }
         
         if (patient == null) {
@@ -40,6 +41,7 @@ public class Receptionist {
             
             error.put("path", "Patient");
             error.put("errType", "NOT_FOUND");
+            errors.add(error);
         }
         
         if ((doctor != null) && (patient != null)) {
@@ -47,7 +49,6 @@ public class Receptionist {
         }
         
         return errors;
-        
     }
     
     public static Doctor findDoctor(String id) {
